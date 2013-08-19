@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Backbone - Template</title>
+        <link rel="stylesheet" href="./app.css" type="text/css"/>
+    </head>
+    <body>
+        <header>
+            <h1>BrandEffect</h1>
+        </header>
+        <article>
+            <div id="search_container"></div>
+            <script type="text/template" id="search_template">
+                <label><%=search_label%></label>
+                <input type="text" id="search_input"/>
+                <input type="button" id="search_button" value=" Search "/>
+            </script>
+        </article>
+        <footer>
+            &copy; 2012 BrandEffect.com
+        </footer>
+        <script type="text/javascript" src="../static/javascript/jquery.js"></script>
+        <script type="text/javascript" src="../static/javascript/underscore.js"></script>
+        <script type="text/javascript" src="../static/javascript/base.js"></script>
+        <script type="text/javascript">
+            (function($) {
+                
+                var SearchView = Backbone.View.extend({
+                    
+                    el: $('#search_container'),
+                                        
+                    initialize: function() {
+                        
+                        this.render('keywords');
+                    },
+                    
+                    render: function(search_label) {
+                        var template = _.template($('#search_template').html(), {search_label: search_label});
+                        this.$el.html(template);
+                    }, 
+                    
+                    events: {
+                        'click input[type=button]': 'doChange'
+                    },
+                    
+                    doChange: function(event) {
+                        this.render('keywords: ' + $('#search_input').val());
+                    },
+                    
+                    doSearch: function(event) {
+                        alert('Search for ' + $('#search_input').val());
+                    }
+                });
+                
+                var searchView = new SearchView();                
+                                              
+            })(jQuery);
+        </script>
+    </body>    
+</html>

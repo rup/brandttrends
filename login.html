@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<title>Login</title>
+<link rel="stylesheet" type="text/css" media="screen" href="./static/css/base.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="./static/css/common.css"/>
+<!--[if IE]>
+<script type="text/javascript">
+    document.location.replace('not-supported.html');
+</script>
+<![endif]-->
+<script type="text/javascript" src="./static/js/jquery.js"></script>
+<script type="text/javascript" src="./static/js/core.js"></script>
+</head>
+<body>
+<section id="login_page" class="fn_clear">
+<article>
+
+    <div class="title">
+        <h1>登录</h1><span>还没有账号？ <a href="register.html">去注册</a></span>
+    </div>
+    <form>
+        <div class="white_input">
+            <input class="mail" name="mail" placeholder="邮箱" required />
+            <span class="remind">*</span>
+            <p class="alert"><span></span>邮箱格式不正确，请输入正确的邮箱地址！</p>
+        </div>
+
+        <div class="white_input password">
+            <input class="password" type="password" placeholder="密码" required />
+        </div>
+    <div class="white_input fn_clear">
+        <input class="check_code" type="text" placeholder="验证码" required /><img src="static/img/a.png">
+    </div>
+    <div class="tail">
+        <div class="main">
+        <input type="button" class="btn_a" value="登 录"><span>自动登录</span><input type="checkbox">
+        </div>
+        <div class="foget"><a href="#">忘记密码？</a></div>
+    </div>
+    </form>
+</article>
+</section>
+<footer>
+<div class="hr"></div>
+    <div class="main">
+        © 2012Brand Effect.<a href="#">关于我们</a>|<a href="#">联系我们</a>|<a href="#">更新日志</a>|<a href="#">添加品牌</a>|<a href="#">常见问题</a>|<a href="#">免责声明</a>
+    </div>
+</footer>
+</body>
+</html>

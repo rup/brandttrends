@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Content-Style-Type" content="text/css"/>
+        <meta http-equiv="Content-Script-Type" content="text/javascript"/>
+        <title>Brand Effect</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="./static/css/base.css"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="./static/css/common.css"/>
+        <!--[if IE]>
+        <script type="text/javascript">
+            document.location.replace('not-supported.html');
+        </script>
+        <![endif]-->                      
+    </head>
+    <body>
+    <header>
+        <div class="main">
+            <div id="logo"><a href="index.html">BRAND EFFECT</a></div>
+            <div class="fn_right">
+                <nav>
+                    <ul>
+                        <li class="cat_1"><a href="rank.html">排行</a></li>
+                        <li class="cat_2"><a href="#">统计</a></li>
+                        <li class="cat_3"><a href="report-index.html">报告</a></li>
+                        <li class="cat_4"><a href="searchpage.html">趋势</a></li>
+                    </ul>
+                </nav>
+                <div class="login">
+                    <ul>
+                        <li><a href="login.html">登录</a></li>
+                        <li><a href="register.html">注册</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+        <section id="preview-page" class="fn_clear">
+            <article>
+                <div class="preview-body">
+                    <div class="table-data">
+                        <div class="head">
+                            <ul class="brand-list">
+                                <li class="brand-input">
+                                    <input type="text" class="brand-inputTxt rd3 b-blue" BrandColor="#2d86e0"/>
+                                    <a class="del btn-icons btn-icons-del"></a>                                    
+                                    <div class="search-tips"></div>
+                                </li>
+                                <li class="vs">vs.</li>
+                                <li class="brand-input">
+                                    <input type="text" class="brand-inputTxt rd3 b-green" BrandColor="#479c34"/>
+                                    <a class="del btn-icons btn-icons-del"></a>
+                                    <div class="search-tips"></div>
+                                </li>
+                                <li class="vs">vs.</li>
+                                <li class="brand-input">
+                                    <input type="text" class="brand-inputTxt rd3 b-red" BrandColor="#ef2929"/>
+                                    <a class="del btn-icons btn-icons-del"></a>
+                                    <div class="search-tips"></div>
+                                </li>
+                                <li class="vs">vs.</li>
+                                <li class="brand-input">
+                                    <input type="text" class="brand-inputTxt rd3 b-orange" BrandColor="#f06c30"/>
+                                    <a class="del btn-icons btn-icons-del"></a>
+                                    <div class="search-tips"></div>
+                                </li>
+                            </ul>                                      
+                        </div>
+                        <div class="table-view">
+                            <table class="table-body">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                <div class="date-picker">
+                                    <div class="date-selecter">                                        
+                                        <a href="#7days" class="on" DataDays="7">7天</a>
+                                        <a href="#30days" DataDays="30">30天</a>                                       
+                                    </div>
+                                    <div class="metrics-picker">
+                                        <a href="#fans" DataType="fans" class="on">新增粉丝数</a>
+                                        <a href="#views" DataType="views">新增访问数</a>
+                                        <a href="#comments" DataType="comments">新增评论数</a>
+                                    </div>
+                                </div>
+                                </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="nob">
+                                        <td class="nob">
+                                            <div id="graphs-view">
+                                                <h1>请选择一个品牌。</h1>
+                                                <div id="graphs-view-body">
+                                                    
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>                                
+                                </tbody>
+                            </table>
+                            <table class="table-body" id="Metrics-table">
+                                <thead>
+                                    <tr>
+                                        <th id="Data-Name">媒体(参数)</th>
+                                        <th width="100" id="Data-StartDate">4/5-5/4</th>
+                                        <th width="100" id="Data-EndDate">5/5-6/4</th>                                    
+                                        <th width="100">新增</th>
+                                        <th width="100">变化</th>
+                                        <th width="100">总计</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="Metrics-Body">
+                                    <!--
+                                    <tr>
+                                        <td class="agl"><input type="checkbox"/> 新浪微博粉丝</td>
+                                        <td>2,001</td>                                    
+                                        <td>2,320</td>
+                                        <td>319</td>
+                                        <td>+10.6%</td>
+                                        <td class="nob">31,002</td>
+                                    </tr>
+                                    -->                                                                        
+                                </tbody>
+                                <tfoot>
+                                    <tr class="nob">
+                                        <td colspan="10">
+                                            <div class="share-it">
+                                                <a href="#">分享</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+
+                    </div>    
+                </div>
+
+            </article>
+            <aside>
+                <div class="sidebar">
+                    <div class="sideBoxer">
+                        <h2 class="title">浏览历史<a class="more">清空</a></h2>
+                        <div class="body">
+                            <ul class="brand-history-list">
+                                <li>
+                                    <a href="#"><img src="images/brand.png"/></a>
+                                    <br/>
+                                    <a href="#">品牌名称</a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="images/brand.png"/></a>
+                                    <br/>
+                                    <a href="#">品牌名称</a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="images/brand.png"/></a>
+                                    <br/>
+                                    <a href="#">品牌名称</a>
+                                </li>                                                               
+                            </ul>                           
+                        </div>
+                    </div>
+                    <div class="sideBoxer" style="margin-top:20px;">
+                        <h2 class="title">热搜品牌</h2>
+                        <div class="body">
+                            <ul class="brand-history-list">
+                                <li>
+                                    <a href="#"><img src="images/brand.png"/></a>
+                                    <br/>
+                                    <a href="#">品牌名称</a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="images/brand.png"/></a>
+                                    <br/>
+                                    <a href="#">品牌名称</a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="images/brand.png"/></a>
+                                    <br/>
+                                    <a href="#">品牌名称</a>
+                                </li>                                                               
+                            </ul>                           
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+        </section>
+        <footer>
+            <div class="hr"></div>
+            <div class="main">
+                <div class="fn_left">Brand Effect</div>
+                <div class="fn_right">
+                    <ul>
+                        <li>© All Rights Reserved. 帖易Teein – Make Brands Social | 关于我们 | 帮助中心</li>
+                        <li>Powered by WordPress | Designed by WebDesignLessons.com</li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    <div class="dialog verification">
+        <div class="title">
+            <h3>输入验证码</h3>
+        </div>
+        <div class="content">
+            <div class="white_input">
+                <input type="text" required="" placeholder="验证码" class="check_code"><img src="static/img/a.png">
+            </div>
+            <p>您输入的验证码不正确</p>
+        </div>
+        <div class="tail">
+            <input type="button" value="确   定" class="btn btn_c">
+        </div>
+    </div>
+    <div class="ui-mask" style="display:none;"></div>
+        <script type="text/template" id="tpl-search-tips">            
+            <ul class="search-tips-list">
+                <li>欧莱雅</li>
+                <li>欧宝</li>
+                <li class="nob">雅诗兰黛</li>
+            </ul>                                                                                           
+        </script>
+
+        <script type="text/javascript" src="./static/javascript/jquery.js"></script>
+        <script type="text/javascript" src="./static/js/common.js"></script>
+        <script type="text/javascript" src="./static/javascript/jquery.plugins.min.js"></script>
+        <script type="text/javascript" src="./static/javascript/raphael-min.js"></script>
+        <script type="text/javascript" src="./static/javascript/underscore.js"></script>
+        <script type="text/javascript" src="./static/javascript/base.js"></script>        
+        <script type="text/javascript" src="./static/javascript/apps/chart.js"></script>
+        <script type="text/javascript" src="./static/javascript/apps/preview.js"></script>
+    </body>
+</html>

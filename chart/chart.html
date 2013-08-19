@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Chart</title>
+    <link rel="stylesheet" href="jqueryui/development-bundle/themes/base/jquery.ui.all.css" type="text/css">
+    <link rel="stylesheet" href="css/common.css" type="text/css">
+    <script src="js/jquery.js"></script>
+    <script src="js/Underscore.min.js"></script>
+    <script src="js/jqueryui.js"></script>
+    <script src="js/raphael-min.js"></script>
+    <script src="js/common.js"></script>
+</head>
+<body>
+<div id="txt">
+    <span class="date"></span>
+    <span class="blue"></span>
+    <span class="green"></span>
+    <span class="red"></span>
+</div>
+<div class="container">
+<div id="holder">
+    <ul id="lettersOnGraph" class="blue">
+        <script type="text/x-jquery-tmpl" id="tmplEventGraphLetter">
+            &lt;li class="graphLetter" style="left: ${left}px;" id="graphLetter${day}"&gt;${letter}&lt;/li&gt;
+        </script>
+        <li id="graphLetter15495"  class="graphLetter">A</li>
+        <li id="graphLetter15494"  class="graphLetter">B</li>
+    </ul>
+</div>
+
+
+<div id="controller">
+<input type="button" id="change" value="3 line">
+<input type="button" id="percentage" value="%change">
+<input type="button" id="absolute" value="absolute">
+<div id="startDate">
+    <input type="text" value="" class="date">
+</div>
+<div id="endDate">
+    <input type="text" value="" class="date">
+</div>
+
+</div>
+</div>
+</body>
+</html>

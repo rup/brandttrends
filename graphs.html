@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>       
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Content-Style-Type" content="text/css"/>
+        <meta http-equiv="Content-Script-Type" content="text/javascript"/>
+        <title>Brand Effect</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="./static/css/base.css"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="./static/css/common.css"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="./static/css/jquery.ui.css"/>
+        <!--[if IE]>
+        <script type="text/javascript">
+            document.location.replace('not-supported.html');
+        </script>
+        <![endif]-->                      
+    </head>
+    <body>
+        <!--Head-->
+        <header class="graphs-head">
+            <div class="main">
+                <div id="logo"><a href="index.html">BRAND EFFECT</a></div>
+                <div class="fn_right">
+                    <nav>
+                        <ul>
+                            <li class="cat_1"><a href="rank.html">排行</a></li>
+                            <li class="cat_2"><a href="#">统计</a></li>
+                            <li class="cat_3"><a href="report-index.html">报告</a></li>
+                            <li class="cat_4"><a href="searchpage.html">趋势</a></li>
+                        </ul>
+                    </nav>
+                    <div class="login">
+                        <ul>
+                            <li><a href="login.html">登录</a></li>
+                            <li><a href="register.html">注册</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+		
+		<!--Events-->
+		<div class="events-wrap">
+			<div class="events-stream" id="events-container">
+				<span class="loading"></span>
+				<ul class="eventStream" id="events-list" brandid="0" style="min-height: 506px;">
+					<li class="streamOptions">						
+						<h4 id="show-events-types">							
+							<span class="event-color" style="background-color: rgb(68, 143, 187);"></span>
+							品牌事件流 
+							<span class="event-arrow up"></span>
+						</h4>
+						<div class="events-types" id="events-types-view" style="height: 254px; display: block; ">                            
+                            <dl id="events-types-list"></dl>
+							<dl>
+                                <dt>
+                                <span>选择品牌:</span> 
+								<select name="brand-list" id="events-brand-list" class="select">
+								</select>
+                                </dt>
+                            </dl>                              
+                        </div>
+					</li>										
+				</ul>				
+			</div>
+		</div>
+		
+		<!--Graphs-->
+		<div class="graphs-wrap">
+			<div class="graphs-boxer" id="graphs-boxer">
+				<div class="graphs-body">
+                    <ul class="graphs-brand-list" id="graphs-brand-list">                                              
+                    </ul>
+                    <ul class="graphs-menu">
+                        <li>
+							<a id="QuickView-Btn">收藏</a>
+							<div class="dialog favorite" id="QuickView-Dialog">
+								<div class="arrow-up"></div>
+								<div class="title">
+									<h3>收藏</h3>
+									<a class="edit btn-blue edit-quickview">编辑</a>
+									<a class="edit btn-blue save-quickview" style="display:none;">完成</a>
+								</div>
+								<div class="content">
+									<ul class="quickview-list">
+										<!--
+										<li>
+											<a href="#1" class="name">New Twitter Fans (Followers) for Justin Bieber  for Justin Bieber  for Justin Bieber</a>
+											<a class="del-quickview thoughtbot" quickviewid='1'>删除</a>
+										</li>										
+										-->
+									</ul>
+								</div>
+							</div>
+						</li>
+                        <li>
+							<a id='Add-QuickView-Btn'>+收藏</a>
+							<div class="dialog add" id="Add-QuickView-Dialog">
+								<div class="arrow-up"></div>
+								<div class="title">
+									<h3>添加到我的收藏</h3>
+									<span class="ui-close">×</span>
+								</div>
+								<div class="content">
+									<p>添加到我的收藏，方便下次直接打开！</p>
+									<textarea id="Add-QuickView-Title" placeholder="写个收藏名称吧.."></textarea>
+								</div>
+								<div class="tail">
+									<span class="loader"></span><span class="txt"></span><input type="button" value="添  加" class="btn btn_c" id="Post-QuickView-Dialog">
+								</div>
+							</div>
+						</li>
+                        <li>
+							<a id="graphs-share">分享</a>
+                            <div class="dialog add share" id="" style="display: none;">
+                                <div class="arrow-up"></div>
+                                <div class="title">
+                                    <h3>分享到...</h3>
+                                </div>
+                                <div class="content">
+                                    <ul>
+                                        <li><a href="#"><img src="static/img/icon_sina.png"> 新浪微博</a></li>
+                                        <li><a href="#"><img src="static/img/icon_sina.png"> 新浪微博</a></li>
+                                        <li><a href="#"><img src="static/img/icon_sina.png"> 新浪微博</a></li>
+                                        <li><a href="#"><img src="static/img/icon_sina.png"> 新浪微博</a></li>
+                                        <li><a href="#"><img src="static/img/icon_sina.png"> 新浪微博</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="/Handler/ExportTrend?quickViewID=" id="graphs-download" target="blank">下载CSV</a></li>
+                    </ul>
+					<div class="graphs-chart-value">
+						
+					</div>
+                    <div class="graphs-chart-body" id="graphs-chart-body">
+						
+					</div>
+                    <div class="graphs-chart-menu" id="graphs-chart-menu">    
+						<a class="dataTypeBtn datatype1 new" value="new">新增 </a>   
+						<a class="dataTypeBtn datatype1 total active" value="total">全部</a>    
+						<a class="dataTypeBtn datatype2 abs active" value="abs">绝对 </a>   
+						<a class="dataTypeBtn datatype2 change" value="change">百分比</a>             
+                        <a class="dateRangeBtn">
+                            <span class="val1"></span>
+                            -
+                            <span class="val2"></span>                            
+                        </a>
+                        <div class="dialog" id="Datapicker-Dialog">
+                            <div class="arrow-up"></div>
+                            <div class="title">
+                                <h3 id="datepicker-title"></h3>
+                                <span class="ui-close">×</span>
+                                <span class="loader"></span>
+                            </div>
+                            <div class="content datapicker-dialog-content">
+                                <div class="startDate">
+                                    <span class="dateTitle">开始日期</span>
+                                    <div id="datepicker-startDate"></div>
+                                </div>
+                                <div class="endDate">
+                                    <span class="dateTitle">结束日期</span>
+                                    <div id="datepicker-endDate"></div>
+                                </div>
+                                <div class="presets">
+                                    <span class="dateTitle">选择日期</span>
+                                    <span class="selectDate">
+                                        <select name="selectDate" id="selectDate">
+                                            <option value="0">自定义</option>
+                                            <option value="1">最近一周</option>
+                                            <option value="2">最近半个月</option>
+                                            <option value="3">最近一个月</option>
+                                            <option value="4">最近二个月</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graphs-body-metrics">                        
+                        <table class="table-body" id="Metrics-View-Table">
+                            <thead>
+                                <tr>
+                                    <th id="Data-Name" class="agl">品牌-媒体-参数</th>
+                                    <th width="120" id="Data-StartDate" class="agr"></th>
+                                    <th width="120" id="Data-EndDate" class="agr"></th>                                    
+                                    <th width="120" class="agr">新增</th>
+                                    <th width="120" class="agr">变化</th>
+                                    <th width="120" class="agr">总计</th>
+                                    <th width="120" class="agr">最后更新</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Metrics-Body">
+                                <!--
+                                <tr>
+                                    <td>巴黎欧莱雅<br/>新浪微博-粉丝数</td>
+                                    <td class="agr">184100</td>
+                                    <td class="agr">184100</td>
+                                    <td class="agr">10000</td>
+                                    <td class="agr">10%</td>
+                                    <td class="agr">285111</td>
+                                    <td class="agr">2012/05/06</td>
+                                </tr>   
+                                -->
+                            </tbody>
+                        </table>                        
+                    </div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="dialog-event-view">
+            <div class="dialog event">
+                <div class="arrow-up"></div>
+                <div class="title">
+                    <h3 class="event-value-date"></h3>
+                </div>
+                <ul class="event-value-ul content li">                                    
+
+                </ul>                
+                <div class="bottom"><!--<a class="close">X</a>--></div>
+            </div>
+        </div>
+
+        <div id="search-brand-dialog">
+            <div class="dialog Search-Brand-Dialog">
+                <div class="arrow-up"></div>
+                <div class="title">
+                    <h3>选择品牌</h3>
+                    <span class="ui-close">×</span>
+                </div>
+                <div class="content" id="brand-search-content">
+                    <div class="popOverSearch">
+                        <span class="searchIcon"></span>
+                        <label class="dummyText">搜索品牌</label>
+                        <input type="text" class="inputSearch" />                                                
+                    </div>
+                    <div class="result-content">
+                        <ul class="result-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="select-metrics-dialog">
+            <div class="dialog Metrics-Dialog">
+                <div class="arrow-up"></div>
+                <div class="title">
+                    <h3>选择媒体&参数类型</h3>
+                    <span class="ui-close">×</span>
+                    <span class="loader"></span>
+                </div>
+                <div class="content" id="metrics-select-content">
+                    <div class="result-content">                        
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="dialog add event" id="add-event-dialog">
+            <div class="title">
+                <h3>添加自定义事件</h3>
+                <span class="ui-close">×</span>
+            </div>
+            <div class="content">
+                <ul>
+                    <li>
+                        <p>事件名称：</p>
+                        <input type="text" class="event-title" style="padding-left:5px">
+                    </li>
+                    <li>
+                        <p>日期：</p>
+                        <input type="text" class="event-day" readonly="readonly"/>
+                    </li>
+                </ul>
+                <p>描述：</p>
+                <textarea placeholder="" class="event-content"></textarea>
+            </div>
+            <div class="tail">
+                <input type="button" value="添  加" class="btn btn_c">
+            </div>
+        </div>
+
+		<script type="text/javascript" src="./static/javascript/jquery.js"></script>
+        <script type="text/javascript" src="./static/javascript/jquery.plugins.min.js"></script>
+        <script type="text/javascript" src="./static/javascript/raphael-min.js"></script>
+        <script type="text/javascript" src="./static/javascript/underscore.js"></script>
+        <script type="text/javascript" src="./static/javascript/base.js"></script>        
+        <script type="text/javascript" src="./static/javascript/apps/graphs.js"></script>
+    </body>
+</html>

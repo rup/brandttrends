@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Backbone Router</title>
+        <style type="text/css">
+            html,body{margin:0;padding:0;}
+            body{font-size:12px; background-color:#fff;}
+            a{color:#000;font-size:14px;}
+        </style>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="../static/javascript/jquery.js"></script>
+        <script type="text/javascript" src="../static/javascript/raphael-min.js"></script>
+        <script type="text/javascript" src="../static/javascript/underscore.js"></script>
+        <script type="text/javascript" src="../static/javascript/base.js"></script> 
+    </head>
+    
+    <body>
+        
+        <p style="display:block;padding:20px;margin: 0 auto;margin-top:50px;width:400px; background: #efefef; border-radius: 5px; border:1px #cacaca solid; line-height: 20px;">
+            <a href="#1001----fans">#1001---fans</a> <br/>
+            <a href="#1001-1002---fans">#1001-1002---fans</a> <br/>
+            <a href="#1001-1002-1003--comments">#1001-1002-1003---comments</a> <br/>
+            <a href="#1001-1002-1003-1004--views">#1001-1002-1003-1004---views</a> <br/>
+            <a href="#fans" class="View-Type">#fans</a><br/>
+            <a href="#views" class="View-Type">#views</a> <br/>
+            <a href="#comments" class="View-Type">#comments</a> <br/>
+            <a href="#actions" class="View-Type">#actions</a> <br/>
+        </p>
+        
+        <script type="text/javascript">
+            $(function(){
+                var Workspace = Backbone.Router.extend({
+                    
+                    QueryLength: 5, //请求参数长度 
+                    
+                    Ids: [],
+                    
+                    Types: ['views', 'fans', 'comments'],
+                    
+                    Type: 'fans',
+
+                    routes: {
+                        "": "start",    // #help
+                        ":query":"run"                    
+                    },
+                    
+                    start: function() {
+                        this.run('1-2--3--4--views-fans');
+                    },                    
+                    
+                    //router run
+                    run: function(query) {                                                                        
+                        //格式化请求参数
+                        this.formatQuery(query);                                                                        
+                        
+                        
+                        console.info(this.getUrlHash());
+                        
+                        //绘制品牌曲线(可能会有多个)
+                        
+                        //chartView.addChartByIds(this.Ids);
+                    },
+                    
+                    //格式化参数
+                    formatQuery: function(query){
+                        var arg = query.split('-'),
+                            idsAry=[], typesArg=[], type;                            
+                        
+                        //拆分数组为IDS/TYPES                        
+                        var i,len, q;                            
+                        for (i=0, len=arg.length; i<len; i++) {                            
+                            q = parseInt(arg[i]);                                                       
+                            if (isNaN(q)) typesArg.push(arg[i]); 
+                            else idsAry.push(q);
+                                                      
+                        }
+                        
+                        if (idsAry.length < this.QueryLength) {
+                            for (i=0, len=this.QueryLength-1; i<len; i++) {
+                                if (idsAry[i] == undefined) idsAry.push('');
+                            }
+                        }
+                        
+                        for (i=0, len=typesArg.length; i<len; i++) {
+                            type = typesArg.pop();
+                            if ($.inArray(type, this.Types) >= 0) break;
+                        }
+                        
+                        this.setIds(idsAry);
+                        this.setType(type);
+                        
+                    },
+                    
+                    //标准格式hash
+                    getUrlHash: function() {
+                        return this.Ids.join('-') + '-' + this.Type;
+                    },
+                    
+                    setIds: function(ids) {
+                        var len = this.QueryLength - 1;
+                        if(ids.length < len) return;
+                        this.Ids = ids.slice(0, len);
+                    },
+                    
+                    setType: function(type) {                        
+                        if ($.inArray(type, this.Types) >= 0) {
+                            this.Type = type;
+                            return true;
+                        }
+                        return false;
+                    },
+                    
+                    changeType: function(el) {
+                        
+                        var type = el.attr('href').replace('#', '');                                                                         
+                        
+                        if (this.setType(type)) {
+                            this.loader();
+                        }                        
+                    },
+                    
+                    loader: function() {                        
+                        var url = this.getUrlHash();
+                        
+                        this.navigate(url, {trigger:true, replace:true});
+                    }
+                });
+                
+                var View = Backbone.View.extend({
+                    
+                    initialize: function(){
+                        this.bindEvents();
+                    },
+                    
+                    bindEvents: function() {
+                        $('.View-Type').click(function(){
+                            router.changeType($(this));
+                            return false;                            
+                        })
+                    }
+                });
+                
+                
+                var router = new Workspace;
+                Backbone.history.start();
+                var view = new View;
+            });
+        </script>
+    </body>
+</html>

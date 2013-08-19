@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Backbone - Todo</title>
+        <link rel="stylesheet" href="./app.css" type="text/css"/>
+    </head>
+    <body>
+        <header>
+            <h1>BrandEffect - Todo</h1>
+        </header>
+        <article>
+            <div id="todo">
+                <input id="new-todo" type="text" placeholder="What needs to be done?">
+            </div>
+            <ul id="todo-list">
+                
+            </ul>
+            <div id="todo-show"><a href="#!helper">浏览吧</a></div>
+        </article>
+        
+        <footer>
+            &copy; 2012 BrandEffect.com
+        </footer>
+        
+        <!-- Templates -->
+        <script type="text/template" id="item-template">
+        <li><label><%=title%></label><a class="destroy"></a></li>
+        </script>
+        <script type="text/javascript" src="../static/javascript/jquery.js"></script>
+        <script type="text/javascript" src="../static/javascript/underscore.js"></script>
+        <script type="text/javascript" src="../static/javascript/base.js"></script>
+        <script type="text/javascript" src="./todo.js"></script>       
+    </body>    
+</html>

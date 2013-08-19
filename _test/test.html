@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Backbone - Hello</title>
+    </head>
+    <body>
+        <header>
+            <h1>Header</h1>
+        </header>
+        <button id="check">报道</button>
+        <ul id="world-list">
+            
+        </ul>
+        <footer>
+            
+        </footer>
+        <script type="text/javascript" src="../static/javascript/jquery.js"></script>
+        <script type="text/javascript" src="../static/javascript/underscore.js"></script>
+        <script type="text/javascript" src="../static/javascript/base.js"></script>
+        <script type="text/javascript">
+            (function($) {
+                var App = {
+                    Models : {},
+                    Views: {},
+                    Controllers: {},
+                    Collections: {},
+                    initialize: function() {
+                        //new App.Controllers.Routes();
+                        //Backbone.history.start();
+                        new App.Views.World();
+                    }
+                };
+                
+                App.Models.World = Backbone.Model.extend({
+                    name: null
+                });
+                
+                App.Collections.Worlds = Backbone.Collection.extend({
+                    initialize: function(models, options) {
+                        this.bind('add', options.view.addOneWorld);
+                    }
+                });
+                
+                App.Views.World = Backbone.View.extend({
+                    el: $('body'),
+                    
+                    initialize: function() {
+                        this.worlds = new App.Collections.Worlds(null, {view: this});
+                    }, 
+                    
+                    events: {
+                        'click #check': 'checkIn'
+                    },
+                    
+                    checkIn: function() {
+                        var worldName = prompt("请问，您是哪星人?");
+                        if (worldName == "") worldName = '未知';
+                        var world = new App.Models.World({name: worldName});
+                        this.worlds.add(world);
+                    },
+                    
+                    addOneWorld: function(model) {
+                        $("#world-list").append("<li>这里是来自<b>"+model.get('name')+"</b>星球的问候: hello, world1！</li>");
+                    }
+                });
+                
+                App.initialize();
+                                              
+            })(jQuery);
+        </script>
+    </body>    
+</html>

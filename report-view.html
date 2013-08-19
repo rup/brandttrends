@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Content-Style-Type" content="text/css"/>
+        <meta http-equiv="Content-Script-Type" content="text/javascript"/>
+        <title>Brand Effect</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="./static/css/base.css"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="./static/css/common.css"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="./static/jqueryui/css/flick/jquery-ui-1.8.21.custom.css"/>
+        <!--[if IE]>
+        <script type="text/javascript">
+            document.location.replace('not-supported.html');
+        </script>
+        <![endif]-->
+        <script type="text/javascript" src="./static/js/jquery.js"></script>
+        <script type="text/javascript" src="./static/js/core.js"></script>
+        <script type="text/javascript" src="./static/js/slider.min.js"></script>
+        <script type="text/javascript" src="./static/jqueryui/js/jquery-ui-1.8.21.custom.min.js"></script>
+        <script type="text/javascript" src="./static/js/common.js"></script>
+    </head>
+    <body>
+    <header class="logined">
+        <div class="main">
+            <div id="logo"><a href="index.html">BRAND EFFECT</a></div>
+            <div class="fn_right">
+                <nav>
+                    <ul>
+                        <li class="cat_1"><a href="rank.html">排行</a></li>
+                        <li class="cat_2"><a href="#">统计</a></li>
+                        <li class="cat_3 on"><a href="report-index.html">报告</a></li>
+                        <li class="cat_4"><a href="searchpage.html">趋势</a></li>
+                    </ul>
+                </nav>
+                <div class="login">
+                    <ul>
+                        <li><a href="login.html">登录</a></li>
+                        <li><a href="register.html">注册</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+        <section class="fn_clear" id="report-view">
+            <article>
+                <div class="table-data">
+                    <div class="head">
+                        <h2 class="report-name">报告名称</h2>
+                        <a href="#" class="a-edit">编辑</a>
+                        <div class="date-picker">
+                            <div class="date-selecter">
+                                <a href="#">今天</a>
+                                <a href="#" class="on">本周</a>
+                                <a href="#">本月</a>
+                                <a href="#">本季度</a>
+                            </div>
+                            <div class="date-chose">
+                                <span>选择日期:</span>
+                                <span><input type="text" id="startDate" class="input-txt input-small"/></span>
+                                <span>-</span>
+                                <span><input type="text" id="endDate" class="input-txt input-small"/></span>
+                                <span><a href="#">确定</a></span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="table-view">
+                        <table class="table-body">
+                            <thead>
+                                <tr>
+                                    <th>品牌名称</th>
+                                    <th>媒体(参数)</th>
+                                    <th>3/1-4/1</th>
+                                    <th>4/2-5/1</th>
+                                    <th>5/2-6/1</th>
+                                    <th>6/2-7/1</th>
+                                    <th>变化</th>
+                                    <th>总数</th>
+                                    <th>最后更新</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>可口可乐</td>
+                                    <td>新浪微博粉丝</td>
+                                    <td>12,001</td>
+                                    <td>23,002</td>
+                                    <td>23,002</td>
+                                    <td>23,002</td>
+                                    <td>+5.0%</td>
+                                    <td>230,011</td>
+                                    <td class="nob">2012-03-01</td>
+                                </tr>
+                                <tr class="nob">
+                                    <td>可口可乐</td>
+                                    <td>新浪微博粉丝</td>
+                                    <td>12,001</td>
+                                    <td>23,002</td>
+                                    <td>23,002</td>
+                                    <td>23,002</td>
+                                    <td>+5.0%</td>
+                                    <td>230,011</td>
+                                    <td class="nob">2012-03-01</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>                                       
+                </div>
+                
+                <div class="table-data" style="margin-top:40px;">
+                    <div class="head">
+                        <h2>数据来源</h2>
+                    </div>
+                    <div class="table-view">
+                        <table class="table-body">
+                            <thead>
+                                <tr>
+                                    <th width="100">品牌名称</th>
+                                    <th width="100">媒体</th>
+                                    <th>来源</th>                                    
+                                    <th width="100">收录日期</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>可口可乐</td>
+                                    <td>新浪微博粉丝</td>                                    
+                                    <td>http://www.baidu.com/</td>
+                                    <td class="nob">2012-03-01</td>
+                                </tr>
+                                <tr class="nob">
+                                    <td>可口可乐</td>
+                                    <td>新浪微博粉丝</td>                                    
+                                    <td>http://www.baidu.com/</td>
+                                    <td class="nob">2012-03-01</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>                                        
+                </div>
+            </article>            
+            <aside>                
+                <div class="sideBoxer">
+                    <h2 class="title">操作</h2>
+                    <div class="body">
+                        <ul class="report-action">
+                            <li class="edit"><a href="#">修改报告</a></li>
+                            <li class="share"><a href="#">分享</a></li>
+                            <li class="download-csv"><a href="#">下载(CSV)</a></li>
+                            <li class="download-pdf"><a href="#">下载(PDF)</a></li>
+                            <li class="print"><a href="#">打印</a></li>
+                            <li class="goback"><a href="#">返回报告列表</a></li>
+                        </ul>                           
+                    </div>
+                </div>
+
+
+            </aside>
+        </section>
+        <footer>
+            <div class="hr"></div>
+            <div class="main">
+                <div class="fn_left">Brand Effect</div>
+                <div class="fn_right">
+                    <ul>
+                        <li>© All Rights Reserved. 帖易Teein – Make Brands Social | 关于我们 | 帮助中心</li>
+                        <li>Powered by WordPress | Designed by WebDesignLessons.com</li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <ul class="available_words" style="display: none;">
+            <li><span class="ac_match"><font>诺基亚</font><b>手机</b></span></li>
+            <li><span class="ac_match"><font>诺基亚</font><b>手机</b></span></li>
+        </ul>
+    </body>
+</html>
